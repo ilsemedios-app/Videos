@@ -37,4 +37,23 @@ if st.button("Preparar mi video"):
                     temp_filename = ydl.prepare_filename(info)
 
                 # Abrimos el archivo para que el usuario lo descargue
-                with
+                with open(temp_filename, "rb") as file:
+                    st.download_button(
+                        label="⬇️ ¡Click aquí para Guardar!",
+                        data=file,
+                        file_name=f"{info.get('title', 'video')}.mp4",
+                        mime="video/mp4"
+                    )
+                
+                # Borramos el archivo del servidor para no gastar espacio
+                os.remove(temp_filename)
+                st.success("¡Listo para descargar!")
+
+            except Exception as e:
+                st.error(f"Error técnico: {e}")
+                st.info("Nota: Si el error persiste, es posible que el sitio web haya bloqueado la IP del servidor. Prueba con otro link o intenta más tarde.")
+    else:
+        st.warning("Escribe un link primero.")
+
+st.divider()
+st.caption("Recuerda que este programa es para uso personal y educativo.")
