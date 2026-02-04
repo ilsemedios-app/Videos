@@ -21,8 +21,7 @@ if st.button("Preparar descarga"):
                 with yt_dlp.YoutubeDL(ydl_opts) as ydl:
                     info = ydl.extract_info(url, download=True)
                     # El nombre real que puso yt-dlp
-                    filename = ydl.prepare_filename(info)
-                
+                    filename = ydl.prepare_filename(info)                
                 with open(filename, "rb") as file:
                     st.download_button(
                         label="✅ ¡Todo listo! Descargar archivo",
