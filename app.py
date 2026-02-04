@@ -12,9 +12,10 @@ if st.button("Preparar descarga"):
     if url:
         with st.spinner("Procesando... esto puede tardar un poco dependiendo del tamaño."):
             # Configuración para que funcione en la web (Streamlit)
-            ydl_opts = {
+         ydl_opts = {
                 'format': 'best',
                 'outtmpl': 'video_provisional.%(ext)s',
+                'extractor_args': {'generic': {'impersonate': 'chrome'}},
             }
             try:
                 with yt_dlp.YoutubeDL(ydl_opts) as ydl:
